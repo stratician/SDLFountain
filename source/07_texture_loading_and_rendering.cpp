@@ -263,6 +263,7 @@ int main( int argc, char* args[] )
 					}
 				}
 
+
 				//Clear screen
 				SDL_RenderClear( gRenderer );
 
