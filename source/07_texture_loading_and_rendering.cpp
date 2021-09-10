@@ -9,6 +9,7 @@ and may not be redistributed without written permission.*/
 #include <vector>
 
 #include "Sprite.h"
+#include "Emitter.h"
 
 //Screen dimension constants
 const int SCREEN_WIDTH = 1200;
@@ -54,7 +55,10 @@ public:
 	bool bDestroy;
 	CParticle(int x, int y, float vx, float vy) 
 	{
-		spr = new CSprite(gTexture, gTextureWidth, gTextureHeight);
+		if(rand()%10 < 5)
+			spr = new CSprite(gTexture, gTextureWidth, gTextureHeight);
+		else
+			spr = new CEmitter(gTexture, gTextureWidth, gTextureHeight);
 		bDestroy = false;
 
 		this->x = x;
@@ -276,7 +280,7 @@ int main( int argc, char* args[] )
 				}
 
 				for (int i=particles.size()-1;i>=0;--i)
-				{
+				{ 
 					particles[i]->Process();
 					if (!particles[i]->bDestroy)
 					{

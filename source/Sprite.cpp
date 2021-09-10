@@ -21,7 +21,9 @@ void CSprite::Render(SDL_Renderer* renderer, int x, int y, float sx, float sy, d
 	if (texture)
 	{
 		//Set rendering space and render to screen
-		SDL_Rect dRect = { x, y, width * sx, height * sy};
+		float w = width * sx;
+		float h = height * sy;
+		SDL_Rect dRect = { x - w/2, y - h/2, w, h};
 
 		//Set clip rendering dimensions (scale)
 		SDL_Rect sRect = { 0, 0, width, height};
