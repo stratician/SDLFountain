@@ -28,5 +28,6 @@ public:
 
 	void Render(SDL_Renderer* renderer, int x, int y, float sx, float sy, double angle = 0.0, SDL_Point* center = NULL, SDL_RendererFlip flip = SDL_FLIP_NONE) const;
 
+
 };
 

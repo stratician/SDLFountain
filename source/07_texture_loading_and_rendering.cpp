@@ -267,7 +267,7 @@ int main( int argc, char* args[] )
 				//Clear screen
 				SDL_RenderClear( gRenderer );
 
-				//Render texture to screen
+				// Render texture to screen
 				// SDL_RenderCopy( gRenderer, gTexture, NULL, NULL );
 
 				if (rand() % 6 == 0)
