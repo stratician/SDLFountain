@@ -8,8 +8,11 @@ and may not be redistributed without written permission.*/
 #include <string>
 #include <vector>
 
+#include "Common.h"
 #include "Sprite.h"
 #include "Emitter.h"
+#include "Player.h"
+
 
 //Screen dimension constants
 const int SCREEN_WIDTH = 1200;
@@ -24,8 +27,6 @@ bool loadMedia();
 //Frees media and shuts down SDL
 void close();
 
-//Loads individual image as texture
-SDL_Texture* loadTexture( std::string path );
 
 //The window we'll be rendering to
 SDL_Window* gWindow = NULL;
@@ -35,6 +36,8 @@ SDL_Renderer* gRenderer = NULL;
 
 //Current displayed texture
 SDL_Texture* gTexture = NULL;
+
+CPlayer* player = nullptr;
 
 int gTextureWidth;
 int gTextureHeight;
@@ -86,6 +89,11 @@ public:
 		{
 			bDestroy = true;
 		}
+
+		if (player)
+		{
+			player->Process();
+		}
 	}
 
 	void Render()
@@ -93,6 +101,11 @@ public:
 		if(spr)
 		{
 			spr->Render(gRenderer, x, y, 0.5, 0.5);
+		}
+
+		if (player)
+		{
+			player->Draw();
 		}
 	}
 };
@@ -151,6 +164,10 @@ bool init()
 		}
 	}
 
+	// Initialize player
+	player = new CPlayer();
+	
+
 	return success;
 }
 
@@ -160,7 +177,7 @@ bool loadMedia()
 	bool success = true;
 
 	//Load PNG texture
-	gTexture = loadTexture( "images/mario.png" );
+	gTexture = loadTexture(gRenderer, "images/mario.png", gTextureWidth, gTextureHeight );
 	if( gTexture == NULL )
 	{
 		printf( "Failed to load texture image!\n" );
@@ -172,6 +189,11 @@ bool loadMedia()
 
 void close()
 {
+	if (player != NULL)
+	{
+		delete player;
+	}
+
 	//Free loaded image
 	SDL_DestroyTexture( gTexture );
 	gTexture = NULL;
@@ -187,37 +209,7 @@ void close()
 	SDL_Quit();
 }
 
-SDL_Texture* loadTexture( std::string path )
-{
-	//The final texture
-	SDL_Texture* newTexture = NULL;
 
-	//Load image at specified path
-	SDL_Surface* loadedSurface = IMG_Load( path.c_str() );
-	if( loadedSurface == NULL )
-	{
-		printf( "Unable to load image %s! SDL_image Error: %s\n", path.c_str(), IMG_GetError() );
-	}
-	else
-	{
-		//Get image dimensions
-		gTextureWidth = loadedSurface->w;
-		gTextureHeight = loadedSurface->h;
-
-
-		//Create texture from surface pixels
-        newTexture = SDL_CreateTextureFromSurface( gRenderer, loadedSurface );
-		if( newTexture == NULL )
-		{
-			printf( "Unable to create texture from %s! SDL Error: %s\n", path.c_str(), SDL_GetError() );
-		}
-
-		//Get rid of old loaded surface
-		SDL_FreeSurface( loadedSurface );
-	}
-
-	return newTexture;
-}
 
 int main( int argc, char* args[] )
 {

@@ -152,12 +152,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="source\Common.cpp" />
     <ClCompile Include="Source\main.cpp" />
     <ClCompile Include="source\Emitter.cpp" />
+    <ClCompile Include="source\Player.cpp" />
     <ClCompile Include="source\Sprite.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="source\Common.h" />
     <ClInclude Include="source\Emitter.h" />
+    <ClInclude Include="source\Player.h" />
     <ClInclude Include="source\Sprite.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

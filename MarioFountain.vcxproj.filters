@@ -16,12 +16,21 @@
     <Filter Include="Source Files\source">
       <UniqueIdentifier>{63e9dd4a-5b26-4b17-8ba7-6d18af3388dc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\source\Entities">
+      <UniqueIdentifier>{6224af47-97b9-48f4-96d1-f8adcffe4371}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\Sprite.h">
       <Filter>Source Files\source</Filter>
     </ClInclude>
     <ClInclude Include="source\Emitter.h">
+      <Filter>Source Files\source</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Player.h">
+      <Filter>Source Files\source</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Common.h">
       <Filter>Source Files\source</Filter>
     </ClInclude>
   </ItemGroup>
@@ -33,6 +42,12 @@
       <Filter>Source Files\source</Filter>
     </ClCompile>
     <ClCompile Include="source\Emitter.cpp">
+      <Filter>Source Files\source</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Player.cpp">
+      <Filter>Source Files\source</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Common.cpp">
       <Filter>Source Files\source</Filter>
     </ClCompile>
   </ItemGroup>
